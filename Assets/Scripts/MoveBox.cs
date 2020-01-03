@@ -5,6 +5,7 @@ using UnityEngine;
 public class MoveBox : MonoBehaviour
 {
     private Vector3 touchPosition;
+    private Vector3 mousePos;
     public Rigidbody2D rb;
     private Vector3 direction;
     public float moveSpeed = 5f;
@@ -25,21 +26,22 @@ public class MoveBox : MonoBehaviour
         MouseDOWN = false;
     }
 
+
     void FixedUpdate()
     {
-        if (MouseDOWN && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
+        if (MouseDOWN){
         {
-            Touch touch = Input.GetTouch(0);
-            touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
-            touchPosition.z = 0;
-            direction = (touchPosition - transform.position);
+         //   Touch touch = Input.GetTouch(0); 
+         //   touchPosition = Camera.main.ScreenToWorldPoint(touch.position);  
+         //   touchPosition.z = 0;   
+         //    if (touch.phase == TouchPhase.Ended) rb.velocity = Vector2.zero;              
+            mousePos = Input.mousePosition;
+            mousePos = Camera.main.ScreenToWorldPoint(mousePos);
+            mousePos.z = 0;
+            direction = (mousePos - transform.position);
             rb.velocity = new Vector2(direction.x, direction.y) * moveSpeed;
-
-            if (touch.phase == TouchPhase.Ended)
-            {
-                rb.velocity = Vector2.zero;
-            }
         }
     }
+}
 }
 

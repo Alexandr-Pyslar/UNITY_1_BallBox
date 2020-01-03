@@ -13,6 +13,10 @@ public class RandomColor : MonoBehaviour
             GetComponent <SpriteRenderer>().color = new Color(186, 113,255, 1);
         } else {
             GetComponent <SpriteRenderer>().color = colBox;
+
+
+
+            
     }
 
 }
